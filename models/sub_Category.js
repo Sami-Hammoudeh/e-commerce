@@ -1,23 +1,25 @@
-
 module.exports = (sequelize, Sequelize) => {
-const Category = sequelize.define("category", {
-    id: {
+    const Sub_Category = sequelize.define("sub_Category", {
+        id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
+    cat_id:{
+        type: Sequelize.INTEGER
+    },
     name: {
         type: Sequelize.STRING
     },
-    describtion: {
+    description: {
         type: Sequelize.STRING
     },
   
 }, {
-    tableName: "categories",
+    tableName: "sub_Categories",
     timestamps: false
 }
 );
 
-return Category;
+return Sub_Category;
 };
