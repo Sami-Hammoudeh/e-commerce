@@ -5,22 +5,18 @@ module.exports = (sequelize, Sequelize) => {
             primaryKey: true,
             autoIncrement: true
         },
-        username: {
-            type: Sequelize.STRING
-        },
-        password: {
+        name: {
             type: Sequelize.STRING
         },
         email: {
             type: Sequelize.STRING
         },
-        country: {
+        password: {
             type: Sequelize.STRING
         },
-        phone: {
-            type: Sequelize.STRING
+        main_address: {
+            type: Sequelize.INTEGER
         }
-
     }, {
         tableName: "customers",
         timestamps: false
