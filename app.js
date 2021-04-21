@@ -6,6 +6,8 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 
+var loadenv = require('dotenv').config();
+
 var app = express();
 
 // connect to database
