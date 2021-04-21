@@ -21,9 +21,11 @@ db.sequelize = sequelize;
 
 db.customers = require("./customer.js")(sequelize, Sequelize); //add this line
 db.orders = require("./order.js")(sequelize, Sequelize); 
-db.products = require("./product.js")(sequelize, Sequelize); 
-db.brands = require("./brand.js")(sequelize, Sequelize); 
 db.categories = require("./category.js")(sequelize, Sequelize); 
 db.sub_Categories = require("./sub_Category.js")(sequelize, Sequelize); 
+db.products = require("./product.js")(sequelize, Sequelize);
+db.brands = require("./brand.js")(sequelize, Sequelize);
+db.addresses = require("./address.js")(sequelize, Sequelize); //add this line
+db.order_Details = require("./order_Detail.js")(sequelize, Sequelize); //add this line
 
 module.exports = db;
