@@ -3,7 +3,7 @@ module.exports = (sequelize, Sequelize) => {
         id: {
             type: Sequelize.INTEGER,
             primaryKey: true,
-            autoIncrement: true // Automatically gets converted to SERIAL for postgres
+            autoIncrement: true
         },
         username: {
             type: Sequelize.STRING
@@ -23,8 +23,7 @@ module.exports = (sequelize, Sequelize) => {
 
     }, {
         tableName: "customers",
-        timestamps: false,  // don't add the timestamp attributes (updatedAt, createdAt)
-
+        timestamps: false
     }
     );
 
