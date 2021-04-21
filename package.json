@@ -12,5 +12,23 @@
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "morgan": "~1.9.1"
-  }
+  },
+  "description": "Open-source e-commerce website back-end using node.js and express.js",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SamiAkram2812/e-commerce.git"
+  },
+  "keywords": [
+    "e-commerce",
+    "website",
+    "node",
+    "express"
+  ],
+  "author": "Sami Hammoudeh, Faten Jaber, Hamzah Albakri, Rahma Alwahsh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SamiAkram2812/e-commerce/issues"
+  },
+  "homepage": "https://github.com/SamiAkram2812/e-commerce#readme"
 }
