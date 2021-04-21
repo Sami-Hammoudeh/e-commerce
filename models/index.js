@@ -20,6 +20,11 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.customers = require("./customer.js")(sequelize, Sequelize); //add this line
+<<<<<<< Updated upstream
 db.products = require("./product.js")(sequelize, Sequelize);
 db.brands = require("./brand.js")(sequelize, Sequelize);
+=======
+db.categories = require("./category.js")(sequelize, Sequelize); 
+db.subcategories = require("./subcategory.js")(sequelize, Sequelize); 
+>>>>>>> Stashed changes
 module.exports = db;
