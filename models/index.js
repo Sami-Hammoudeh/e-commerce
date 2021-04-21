@@ -20,5 +20,6 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.customers = require("./customer.js")(sequelize, Sequelize); //add this line
+db.addresses = require("./address.js")(sequelize, Sequelize); //add this line
 
 module.exports = db;
