@@ -8,6 +8,10 @@ var indexRouter = require('./routes/index');
 
 var app = express();
 
+// connect to database
+const db = require("./models");
+db.sequelize.sync({alter:true});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
