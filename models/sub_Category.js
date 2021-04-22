@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Sub_Category = sequelize.define("sub_Category", {
+    const Sub_Category = sequelize.define("sub_category", {
         id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -16,7 +16,7 @@ module.exports = (sequelize, Sequelize) => {
     },
   
 }, {
-    tableName: "sub_Categories",
+    tableName: "sub_categories",
     timestamps: false
 }
 );

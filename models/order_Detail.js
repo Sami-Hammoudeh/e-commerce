@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Order_Detail = sequelize.define("order_Detail", {
+    const Order_Detail = sequelize.define("order_detail", {
         id: {
             type: Sequelize.INTEGER,
             primaryKey: true,
@@ -19,7 +19,7 @@ module.exports = (sequelize, Sequelize) => {
         }
 
     }, {
-        tableName: "order_Details",
+        tableName: "order_details",
         timestamps: false
     }
     );
