@@ -4,7 +4,15 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+//Routers
 var indexRouter = require('./routes/index');
+var addressesRouter = require('./routes/addresses');
+var adminsRouter = require('./routes/admins');
+var brandsRouter = require('./routes/brands');
+var categoriesRouter = require('./routes/categories');
+var customersRouter = require('./routes/customers');
+var ordersRouter = require('./routes/orders');
+var productsRouter = require('./routes/products');
 
 var loadenv = require('dotenv').config();
 
@@ -12,6 +20,7 @@ var app = express();
 
 // connect to database
 const db = require("./models");
+const { categories } = require('./models');
 db.sequelize.sync({alter:true});
 
 // view engine setup
@@ -25,6 +34,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/addresses', addressesRouter);
+app.use('/admins', adminsRouter);
+app.use('/brands', brandsRouter);
+app.use('/categories', categoriesRouter);
+app.use('/customers', customersRouter);
+app.use('/orders', ordersRouter);
+app.use('/products', productsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
