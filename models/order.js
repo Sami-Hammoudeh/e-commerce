@@ -5,17 +5,26 @@ module.exports = (sequelize, Sequelize) => {
             primaryKey: true,
             autoIncrement: true
         },
-        customer_id: {
+        cart_id: {
+            type: Sequelize.INTEGER
+        },
+        product_id: {
+            type: Sequelize.INTEGER
+        },
+        quantity: {
             type: Sequelize.INTEGER
         },
         amount: {
-            type: Sequelize.INTEGER
+            type: Sequelize.DOUBLE
+        },
+        time_date: {
+            type: Sequelize.DATE
         },
         status: {
             type: Sequelize.STRING
         },
-        address_id: {
-            type: Sequelize.INTEGER
+        paid: {
+            type: Sequelize.BOOLEAN
         }
 
     }, {
