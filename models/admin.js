@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Customer = sequelize.define("admin", {
+    const Admin = sequelize.define("admin", {
         user_id: {
             type: Sequelize.INTEGER,
             primaryKey: true
@@ -9,6 +9,5 @@ module.exports = (sequelize, Sequelize) => {
         timestamps: false
     }
     );
-
-    return Customer;
+    return Admin;
 };
