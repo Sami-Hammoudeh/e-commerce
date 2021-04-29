@@ -26,6 +26,5 @@ db.sub_categories = require("./sub_category.js")(sequelize, Sequelize);
 db.products = require("./product.js")(sequelize, Sequelize);
 db.brands = require("./brand.js")(sequelize, Sequelize);
 db.addresses = require("./address.js")(sequelize, Sequelize);
-db.order_details = require("./order_detail.js")(sequelize, Sequelize);
 
 module.exports = db;
