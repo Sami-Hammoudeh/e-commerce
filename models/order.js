@@ -6,10 +6,25 @@ module.exports = (sequelize, Sequelize) => {
             autoIncrement: true
         },
         cart_id: {
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            references: {
+                model: 'customers',
+                key: 'user_id'
+              }
         },
         product_id: {
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            references: {
+                model: 'products',
+                key: 'id'
+              }
+        },
+        address_id: {
+            type: Sequelize.INTEGER,
+            references: {
+                model: 'addresses',
+                key: 'id'
+              }
         },
         quantity: {
             type: Sequelize.INTEGER
@@ -26,7 +41,6 @@ module.exports = (sequelize, Sequelize) => {
         paid: {
             type: Sequelize.BOOLEAN
         }
-
     }, {
         tableName: "orders",
         timestamps: false

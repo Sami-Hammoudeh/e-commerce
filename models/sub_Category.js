@@ -6,7 +6,11 @@ module.exports = (sequelize, Sequelize) => {
             autoIncrement: true
         },
         cat_id: {
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            references: {
+                model: 'categories',
+                key: 'id'
+              }
         },
         name: {
             type: Sequelize.STRING
