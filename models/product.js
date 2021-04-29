@@ -25,8 +25,10 @@ module.exports = (sequelize, Sequelize) => {
         },
         published: {
             type: Sequelize.BOOLEAN
+        },
+        color: {
+            type: Sequelize.STRING
         }
-
     }, {
         tableName: "products",
         timestamps: false
