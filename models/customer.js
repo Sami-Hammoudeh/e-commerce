@@ -4,18 +4,6 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER,
             primaryKey: true,
             autoIncrement: true
-        },
-        name: {
-            type: Sequelize.STRING
-        },
-        email: {
-            type: Sequelize.STRING
-        },
-        password: {
-            type: Sequelize.STRING
-        },
-        main_address: {
-            type: Sequelize.INTEGER
         }
     }, {
         tableName: "customers",
