@@ -26,5 +26,7 @@ db.sub_categories = require("./sub_category.js")(sequelize, Sequelize);
 db.products = require("./product.js")(sequelize, Sequelize);
 db.brands = require("./brand.js")(sequelize, Sequelize);
 db.addresses = require("./address.js")(sequelize, Sequelize);
+db.admins = require("./admin.js")(sequelize, Sequelize);
+db.users = require("./user.js")(sequelize, Sequelize);
 
 module.exports = db;
