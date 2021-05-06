@@ -10,31 +10,20 @@ exports.getAddress = function (req, res) {
 }
 
 exports.getAllAddresses = function (req, res) {
-    Address.findAll({
-        attributes: ['content', ['deletedAt','deleteDate']],
-        order: [['createdAt', 'DESC']],
-        include: [
-          { 
-            model: User, // load all users data
-            attributes: ['username']  
-          },
-        ],
-        //paranoid: false //to retrieve even the deleted records
-     })
-       .then(data => {
-         res.send({
-           'data': data,
-           'message': "Addresses retrieved successfully",
-           'status': 200
-         });
-       })
-       .catch(err => {
-         res.status(500).send({
-           message:
-             err.message || "Some error occurred while retrieving Addresses."
-         });
-       });
-    }
+    Address.findAll()
+        .then(data => {
+            res.send({
+                'Data': data,
+                'Status': 200
+            });
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving tutorials."
+            });
+        });
+}
 
 exports.deleteAllAddresses = function (req, res) {
 
