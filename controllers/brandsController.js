@@ -17,7 +17,7 @@ const brand = {
     description: req.body.description
 };
 // Save Brand in the database
-Address.create(brand)
+Brand.create(brand)
     .then(data => {
         res.send({
             'Data': data,
@@ -71,7 +71,7 @@ exports.deleteAllBrands = function (req, res) {
 
 exports.deleteBrand = function (req, res) {
     const id = req.params.id;
-    Address.destroy({
+    Brand.destroy({
         where: { id: id }
     })
         .then(num => {
