@@ -6,10 +6,10 @@ module.exports = (sequelize, Sequelize) => {
             autoIncrement: true
         },
         cart_id: {
-            type: Sequelize.STRING,
+            type: Sequelize.INTEGER,
             references: {
                 model: 'customers',
-                key: 'email'
+                key: 'id'
               }
         },
         product_id: {

@@ -1,11 +1,11 @@
 module.exports = (sequelize, Sequelize) => {
     const Customer = sequelize.define("customer", {
-        email: {
-            type: Sequelize.STRING,
+        id: {
+            type: Sequelize.INTEGER,
             primaryKey: true,
             references: {
                 model: 'users',
-                key: 'email'
+                key: 'id'
               }
         }
     }, {

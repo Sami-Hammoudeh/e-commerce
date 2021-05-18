@@ -4,7 +4,7 @@ const Address = db.addresses;
 
 exports.addAddress = function (req, res) {
     // Validate request
-    if (!req.body.country || !req.body.city || !req.body.zip_code || !req.body.phone || !req.body.customer_email) {
+    if (!req.body.country || !req.body.city || !req.body.zip_code || !req.body.phone || !req.body.customer_id) {
         res.status(400).send({
             message: "Country, City, ZIP_Code, Phone and Customer_email can not be empty!"
         });
@@ -12,7 +12,7 @@ exports.addAddress = function (req, res) {
     }
     // Create an Address
     const address = {
-        customer_email: req.body.customer_email,
+        customer_id: req.body.customer_id,
         country: req.body.country,
         city: req.body.city,
         zip_code: req.body.zip_code,

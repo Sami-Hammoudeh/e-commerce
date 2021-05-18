@@ -5,11 +5,11 @@ module.exports = (sequelize, Sequelize) => {
             primaryKey: true,
             autoIncrement: true
         },
-        customer_email: {
-            type: Sequelize.STRING,
+        customer_id: {
+            type: Sequelize.INTEGER,
             references: {
                 model: 'customers',
-                key: 'email'
+                key: 'id'
               }
         },
         country: {
