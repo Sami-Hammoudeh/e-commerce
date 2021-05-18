@@ -32,19 +32,19 @@ db.users = require("./user.js")(sequelize, Sequelize);
 
 //Relations
 //Admin Relations
-db.admins.belongsTo(db.users, { foreignKey: 'user_id' });
-db.users.hasMany(db.admins, { foreignKey: 'user_id' });
+db.admins.belongsTo(db.users, { foreignKey: 'email' });
+db.users.hasMany(db.admins, { foreignKey: 'email' });
 
 //Customer Relations
-db.customers.belongsTo(db.users, { foreignKey: 'user_id' });
-db.users.hasMany(db.customers, { foreignKey: 'user_id' });
+db.customers.belongsTo(db.users, { foreignKey: 'email' });
+db.users.hasMany(db.customers, { foreignKey: 'email' });
 //---With Orders
-db.customers.belongsToMany(db.orders, { through: 'customers_orders', foreignKey: 'customer_id', timestamps: false });
+db.customers.belongsToMany(db.orders, { through: 'customers_orders', foreignKey: 'customer_email', timestamps: false });
 db.orders.belongsToMany(db.customers, { through: 'customers_orders', foreignKey: 'order_id', timestamps: false });
 
 //Addresses Relations
-db.addresses.belongsTo(db.customers, { foreignKey: 'customer_id' });
-db.customers.hasMany(db.addresses, { foreignKey: 'customer_id' });
+db.addresses.belongsTo(db.customers, { foreignKey: 'customer_email' });
+db.customers.hasMany(db.addresses, { foreignKey: 'customer_email' });
 
 //Orders Relations
 db.orders.belongsTo(db.addresses, { foreignKey: 'address_id' });

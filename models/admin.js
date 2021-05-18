@@ -1,12 +1,12 @@
 module.exports = (sequelize, Sequelize) => {
     const Admin = sequelize.define("admin", {
-        user_id: {
-            type: Sequelize.INTEGER,
+        email: {
+            type: Sequelize.STRING,
             primaryKey: true,
             references: {
                 model: 'users',
-                key: 'id'
-              }
+                key: 'email'
+            }
         }
     }, {
         tableName: "admins",
