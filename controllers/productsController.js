@@ -4,15 +4,16 @@ const Product = db.products;
 
 exports.addProduct = function (req, res) {
 // Validate request
-if (!req.body.id || !req.body.name || !req.body.price || !req.body.description || !req.body.stock || !req.body.published || !req.body.color) {
+if (!req.body.id || !req.body.brand_id || !req.body.name || !req.body.price || !req.body.description || !req.body.stock || !req.body.published || !req.body.color) {
     res.status(400).send({
-        message: "Id, Name, Price, description, stock, published and color can not be empty!"
+        message: "Id, Brand_id, Name, Price, description, stock, published and color can not be empty!"
     });
     return;
 }
 // Create an Products
 const product = {
     id: req.body.id,
+    brand_id: req.body.brand_id,
     name: req.body.name,
     price: req.body.price,
     description: req.body.description,
