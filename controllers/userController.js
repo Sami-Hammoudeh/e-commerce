@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const db = require("../models");
 const User = db.users;
+const Customer = db.customers;
 const jwt = require('jsonwebtoken'); 
 
 const signUp = async function (req, res) {
@@ -21,16 +22,20 @@ const signUp = async function (req, res) {
         last_name: req.body.last_name,
         role: "customer"
     };
+    // Create a customer
+    const customer = {
+        email: req.body.email
+    };
     // Save the user in the database
     User.create(user)
         .then(data => {
+            Customer.create(customer);
             res.send({
                 email: data.email,
                 password: data.password,
                 first_name: data.first_name,
                 last_name: data.last_name
             });
-
         })
         .catch(err => {
             res.status(500).send({

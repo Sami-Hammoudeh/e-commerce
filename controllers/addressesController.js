@@ -4,19 +4,19 @@ const Address = db.addresses;
 
 exports.addAddress = function (req, res) {
     // Validate request
-    if (!req.body.country || !req.body.city || !req.body.zip_code || !req.body.phone || !req.body.customer_id) {
+    if (!req.body.country || !req.body.city || !req.body.zip_code || !req.body.phone || !req.body.customer_email) {
         res.status(400).send({
-            message: "Country, City, ZIP_Code, Phone and Customer_id can not be empty!"
+            message: "Country, City, ZIP_Code, Phone and Customer_email can not be empty!"
         });
         return;
     }
     // Create an Address
     const address = {
+        customer_email: req.body.customer_email,
         country: req.body.country,
         city: req.body.city,
         zip_code: req.body.zip_code,
-        phone: req.body.phone,
-        customer_id: req.body.customer_id,
+        phone: req.body.phone
     };
     // Save Address in the database
     Address.create(address)
