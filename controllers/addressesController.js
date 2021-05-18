@@ -67,7 +67,21 @@ exports.getAllAddresses = function (req, res) {
 }
 
 exports.deleteAllAddresses = function (req, res) {
+    Address.destroy({
+        where: {},
+        truncate: false
+    })
+        .then(num => {
+            res.send({
+                message: `${num} Addresses were deleted successfully!`
+            });
 
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Error deleting Students"
+            });
+        });
 }
 
 exports.deleteAddress = function (req, res) {
