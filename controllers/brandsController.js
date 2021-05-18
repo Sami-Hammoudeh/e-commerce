@@ -60,13 +60,27 @@ exports.getAllBrands = function (req, res) {
     .catch(err => {
         res.status(500).send({
             message:
-                err.message || "Some error occurred while retrieving tutorials."
+                err.message || "Some error occurred while retrieving Brands."
         });
     });
 }
 
 exports.deleteAllBrands = function (req, res) {
+    Brand.destroy({
+        where: {},
+        truncate: false
+    })
+        .then(num => {
+            res.send({
+                message: `${num} Brands were deleted successfully!`
+            });
 
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Error deleting Brands"
+            });
+        });
 }
 
 exports.deleteBrand = function (req, res) {
