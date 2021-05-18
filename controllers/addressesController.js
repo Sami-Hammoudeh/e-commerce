@@ -61,7 +61,7 @@ exports.getAllAddresses = function (req, res) {
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while retrieving tutorials."
+                    err.message || "Some error occurred while retrieving addresses."
             });
         });
 }
@@ -79,7 +79,7 @@ exports.deleteAllAddresses = function (req, res) {
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error deleting Students"
+                message: "Error deleting Addresses"
             });
         });
 }
