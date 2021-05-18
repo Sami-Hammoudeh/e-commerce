@@ -15,6 +15,7 @@ var ordersRouter = require('./routes/orders');
 var productsRouter = require('./routes/products');
 var subCategoriesRouter = require('./routes/sub_categories');
 var stockRouter = require('./routes/stock');
+var authRouter = require('./routes/auth');
 
 var loadenv = require('dotenv').config();
 
@@ -45,6 +46,7 @@ app.use('/orders', ordersRouter);
 app.use('/products', productsRouter);
 app.use('/sub_categories', subCategoriesRouter);
 app.use('/stock', stockRouter);
+app.use('/', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

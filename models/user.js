@@ -13,7 +13,7 @@ module.exports = (sequelize, Sequelize) => {
         last_name: {
             type: Sequelize.STRING
         },
-        type: {
+        role: {
             type: Sequelize.STRING
         }
     }, {
