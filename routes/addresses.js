@@ -8,5 +8,4 @@ router.post('/', Controller.addAddress);
 router.delete('/', Controller.deleteAllAddresses);
 router.delete('/:id', Controller.deleteAddress);
 router.put('/:id', Controller.updateAddress);
-
 module.exports = router;

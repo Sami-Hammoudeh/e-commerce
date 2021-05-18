@@ -94,5 +94,25 @@ exports.deleteAddress = function (req, res) {
 }
 
 exports.updateAddress = function (req, res) {
+    const id = req.params.id;
 
+    Address.update(req.body, {
+        where: { id: id }
+    })
+        .then(num => {
+            if (num == 1) {
+                res.send({
+                    message: "Address was updated successfully."
+                });
+            } else {
+                res.send({
+                    message: `Cannot update the Address with id=${id}. Maybe Address was not found!`
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: `Error updating Address with id=${id}`
+            });
+        });
 }
