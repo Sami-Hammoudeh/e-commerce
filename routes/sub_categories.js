@@ -11,4 +11,9 @@ router.put('/:id', Controller.updateSubCategory);
 //router.post('/:id', Controller.addProduct);
 //Delete Product
 //router.delete('/:id/:product_id', Controller.deleteProduct);
+router.post('/:id/products', Controller.addProduct);
+//Delete Product
+router.delete('/:id/products/:product_id', Controller.deleteProduct);
+//Get All Products
+router.get('/:id/products', Controller.getAllProducts);
 module.exports = router;

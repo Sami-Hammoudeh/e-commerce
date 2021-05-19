@@ -11,4 +11,9 @@ router.put('/:id', Controller.updateCategory);
 //router.post('/:id', Controller.addSubCategory);
 //Delete Sub Category
 //router.delete('/:id/:sub_id', Controller.deleteSubCategory);
+router.post('/:id/sub_categories', Controller.addSubCategory);
+//Delete Sub Category
+router.delete('/:id/sub_categories/:sub_id', Controller.deleteSubCategory);
+//Get All Sub Categories
+router.get('/:id/sub_categories', Controller.getAllSubCategories);
 module.exports = router;
