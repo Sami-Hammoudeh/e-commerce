@@ -9,12 +9,12 @@ var indexRouter = require('./routes/index');
 var addressesRouter = require('./routes/addresses');
 var adminsRouter = require('./routes/admins');
 var brandsRouter = require('./routes/brands');
+var cartRouter = require('./routes/cart');
 //var categoriesRouter = require('./routes/categories');
 var customersRouter = require('./routes/customers');
 var ordersRouter = require('./routes/orders');
 var productsRouter = require('./routes/products');
 var subCategoriesRouter = require('./routes/sub_categories');
-//var stockRouter = require('./routes/stock');
 var authRouter = require('./routes/auth');
 
 var loadenv = require('dotenv').config();
@@ -40,12 +40,12 @@ app.use('/', indexRouter);
 app.use('/addresses', addressesRouter);
 app.use('/admins', adminsRouter);
 app.use('/brands', brandsRouter);
+app.use('/cart', cartRouter);
 //app.use('/categories', categoriesRouter);
 app.use('/customers', customersRouter);
 app.use('/orders', ordersRouter);
 app.use('/products', productsRouter);
 app.use('/sub_categories', subCategoriesRouter);
-//app.use('/stock', stockRouter);
 app.use('/', authRouter);
 
 // catch 404 and forward to error handler
