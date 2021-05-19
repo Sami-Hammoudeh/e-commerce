@@ -4,6 +4,14 @@ const User = db.users;
 const Customer = db.customers;
 const Admin = db.admins;
 const jwt = require('jsonwebtoken');
+const atob = require('atob');
+
+const parseJwt = function (token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace('-', '+').replace('_', '/');
+    var userdata = atob(base64);
+    return (JSON.parse(userdata));
+}
 
 const signUp = async function (req, res) {
     // Validate request
@@ -73,7 +81,7 @@ const signIn = async function (req, res) {
     });
     // create token
     const token = jwt.sign({
-        name: user.email
+        id: user.id
     }, process.env.JWT_SECRET)
     res.json({
         data: 'singin success',
@@ -85,5 +93,5 @@ const signIn = async function (req, res) {
 module.exports = {
     signUp: signUp,
     signIn: signIn,
-
+    parseJwt: parseJwt
 };
