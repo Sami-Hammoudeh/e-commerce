@@ -34,7 +34,7 @@ Category.create(category)
 
 
 
-exports.getCategories = function (req, res) { 
+exports.getCategory = function (req, res) { 
     Category.findByPk(req.params.id)
     .then(data => {
         res.send({
@@ -67,6 +67,7 @@ exports.getAllCategories = function (req, res) {
         });
     });
 }
+
 
 
 
@@ -139,4 +140,3 @@ exports.updateCategories= function (req, res) {
             });
         });
 }
-

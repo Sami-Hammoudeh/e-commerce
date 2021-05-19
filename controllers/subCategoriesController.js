@@ -32,7 +32,7 @@ SubCategory.create(subcategory)
 }
 
 
-exports.getSubCategories = function (req, res) { 
+exports.getSubCategory = function (req, res) { 
     SubCategory.findByPk(req.params.id)
     .then(data => {
         res.send({
@@ -89,7 +89,7 @@ exports.deleteAllSubCategories = function (req, res) {
 
 
 
-exports.deleteAllSubCategories = function (req, res) {
+exports.deleteSubCategory= function (req, res) {
     const id = req.params.id;
     SubCategory.destroy({
         where: { id: id }
@@ -114,7 +114,7 @@ exports.deleteAllSubCategories = function (req, res) {
 
 
 
-exports.updateSubCategories= function (req, res) {
+exports.updateSubCategory= function (req, res) {
     const id = req.params.id;
 
     SubCategory.update(req.body, {
