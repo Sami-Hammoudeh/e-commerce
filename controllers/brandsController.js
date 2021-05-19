@@ -144,6 +144,28 @@ exports.addProduct = function (req, res) {
                     err.message || "Some error occurred while retrieving the Product " + req.params.id + "."
             });
         });
+        Product.update(
+          { brand_id: req.params.id },
+                {
+                    fields: ['brand_id'],
+            where: { id: req.body.id}
+        })
+            .then(num => {
+                if (num == 1) {
+                    res.send({
+                        message: "Product was updated successfully."
+                    });
+                } else {
+                    res.send({
+                        message: `Cannot update the Product with id=${id}. Maybe Product was not found!`
+                    });
+                }
+            })
+            .catch(err => {
+                res.status(500).send({
+                    message: `Error updating Product with id=${id}`
+                });
+            });
 
 }
 
