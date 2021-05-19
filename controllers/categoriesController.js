@@ -1,7 +1,8 @@
 const db = require("../models");
 const Category = db.categories;
 
-exports.addCategory = function (req, res) {if (!req.body.id || !req.body.name || !req.body.descrption) {
+exports.addCategory = function (req, res) {
+    if (!req.body.id || !req.body.name || !req.body.descrption) {
     res.status(400).send({
         message: "id,name and descrption can not be empty!"
     });
@@ -90,7 +91,7 @@ exports.deleteAllCategories = function (req, res) {
 
 
 
-exports.deleteAllCategories = function (req, res) {
+exports.deleteCategoryById = function (req, res) {
     const id = req.params.id;
     Category.destroy({
         where: { id: id }

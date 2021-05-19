@@ -21,7 +21,7 @@ const product = {
     color: req.body.color
 };
 // Save Product in the database
-Product.create(Product)
+Product.create(product)
     .then(data => {
         res.send({
             'Data': data,
