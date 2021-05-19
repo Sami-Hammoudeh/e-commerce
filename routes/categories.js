@@ -7,7 +7,8 @@ router.post('/', Controller.addCategory);
 router.delete('/', Controller.deleteAllCategories);
 router.delete('/:id', Controller.deleteCategory);
 router.put('/:id', Controller.updateCategory);
+//Add Sub Category
+router.post('/:id', Controller.addSubCategory);
+//Delete Sub Category
+router.delete('/:id', Controller.deleteSubCategory);
 module.exports = router;
-
-
-
