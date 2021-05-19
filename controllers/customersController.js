@@ -74,7 +74,8 @@ exports.deleteCustomer = function (req, res) {
 
 exports.updateCustomer = function (req, res) {
     const id = req.params.id;
-
+    if (req.body.id) res.status(400).send("Cannot update id");
+    if (req.body.password) res.status(400).send("Cannot update password from here");
     Customer.update(req.body, {
         where: { id: id }
     })
