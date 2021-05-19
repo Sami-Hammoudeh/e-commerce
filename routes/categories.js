@@ -8,7 +8,9 @@ router.delete('/', Controller.deleteAllCategories);
 router.delete('/:id', Controller.deleteCategory);
 router.put('/:id', Controller.updateCategory);
 //Add Sub Category
-router.post('/:id', Controller.addSubCategory);
+router.post('/:id/sub_categories', Controller.addSubCategory);
 //Delete Sub Category
-router.delete('/:id/:sub_id', Controller.deleteSubCategory);
+router.delete('/:id/sub_categories/:sub_id', Controller.deleteSubCategory);
+//Get All Sub Categories
+router.get('/:id/sub_categories', Controller.getAllSubCategories);
 module.exports = router;
