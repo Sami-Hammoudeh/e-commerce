@@ -15,10 +15,14 @@ exports.addOrder = function (req, res) {
 const order = {
     
     id: req.body.id,
-    email: req.body.email,
-    password: req.body.password,
-    first_name: req.body.firstname,
-    last_name: req.body.last_name
+    cart_id: req.body.cart_id,
+    product_id: req.body.product_id,
+    address_id: req.body.address_id,
+    quantity: req.body.quantity,
+    amount: req.body.amount,
+    time_date: req.body.time_date,
+    status: req.body.status,
+    paid: req.body.paid
 
 };
 

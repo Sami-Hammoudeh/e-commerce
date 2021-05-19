@@ -5,7 +5,7 @@ exports.addCustomer = function (req, res) {
    
         if (!req.body.id || !req.body.email || !req.body.password || !req.body.first_name || !req.body.	last_name) {
         res.status(400).send({
-            message: "id,name and descrption can not be empty!"
+            message: "id, email, password, first_name and last_name can not be empty!"
         });
         return;
     }
