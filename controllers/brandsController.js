@@ -1,4 +1,3 @@
-const { where } = require("sequelize/types");
 const db = require("../models");
 const brand = require("../models/brand");
 const Brand = db.brands;
