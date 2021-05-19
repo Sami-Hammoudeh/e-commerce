@@ -26,6 +26,13 @@ module.exports = (sequelize, Sequelize) => {
                 key: 'id'
               }
         },
+        customer_id: {
+            type: Sequelize.INTEGER,
+            references: {
+                model: 'customers',
+                key: 'id'
+              }
+        },
         quantity: {
             type: Sequelize.INTEGER
         },

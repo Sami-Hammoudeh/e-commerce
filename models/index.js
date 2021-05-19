@@ -38,9 +38,6 @@ db.users.hasMany(db.admins, { foreignKey: 'id' });
 //Customer Relations
 db.customers.belongsTo(db.users, { foreignKey: 'id' });
 db.users.hasMany(db.customers, { foreignKey: 'id' });
-//---With Orders
-db.customers.belongsToMany(db.orders, { through: 'customers_orders', foreignKey: 'customer_id', timestamps: false });
-db.orders.belongsToMany(db.customers, { through: 'customers_orders', foreignKey: 'order_id', timestamps: false });
 
 //Addresses Relations
 db.addresses.belongsTo(db.customers, { foreignKey: 'customer_id' });
@@ -55,6 +52,9 @@ db.customers.hasMany(db.orders, { foreignKey: 'cart_id' });
 //
 db.orders.belongsTo(db.products, { foreignKey: 'product_id' });
 db.products.hasMany(db.orders, { foreignKey: 'product_id' });
+//
+db.orders.belongsTo(db.products, { foreignKey: 'customer_id' });
+db.customers.hasMany(db.orders, { foreignKey: 'customer_id' });
 
 //Products Relations
 db.products.belongsTo(db.brands, { foreignKey: 'brand_id' });
