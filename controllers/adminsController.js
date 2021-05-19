@@ -18,7 +18,7 @@ exports.addAdmin = async function (req, res) {
     const user = {
         role: "admin"
     };
-    // Create an admin
+    // Create an Admin
     const admin = {
         email: req.body.email,
         password: await bcrypt.hash(req.body.password, salt),
@@ -29,11 +29,25 @@ exports.addAdmin = async function (req, res) {
     User.create(user)
         .then(data => {
             admin.id = data.id;
-            Admin.create(admin);
-            res.send({
-                data: admin,
-                status: "200"
-            });
+            Admin.create(admin)
+                .then(data => {
+                    res.send({
+                        id: admin.id,
+                        email: admin.email,
+                        password: admin.password,
+                        first_name: admin.first_name,
+                        last_name: admin.last_name
+                    });
+                })
+                .catch(err => {
+                    User.destroy({
+                        where: { id: data.id }
+                    })
+                    res.status(500).send({
+                        message:
+                            err.message || "Some error occurred while creating the user."
+                    });
+                });
         })
         .catch(err => {
             res.status(500).send({
@@ -131,8 +145,8 @@ exports.deleteAdmin = function (req, res) {
 
 exports.updateAdmin = function (req, res) {
     const id = req.params.id;
-    if (req.body.id) res.status(400).send("Cannot update id");
-    if (req.body.password) res.status(400).send("Cannot update password from here");
+    if (req.body.id) return res.status(400).send("Cannot update id");
+    if (req.body.password) return res.status(400).send("Cannot update password from here");
     Admin.update(req.body, {
         where: { id: id }
     })
@@ -154,10 +168,12 @@ exports.updateAdmin = function (req, res) {
         });
 }
 
-exports.changePassword = function (req, res) {
+exports.changePassword = async function (req, res) {
     const id = req.params.id;
+    // generate salt to hash password
+    const salt = await bcrypt.genSalt(10);
     Admin.update(
-        { password: req.body.password },
+        { password: await bcrypt.hash(req.body.password, salt) },
         {
             fields: ['password'],
             where: { id: id }
