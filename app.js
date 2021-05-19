@@ -14,7 +14,7 @@ var cartRouter = require('./routes/cart');
 var customersRouter = require('./routes/customers');
 var ordersRouter = require('./routes/orders');
 var productsRouter = require('./routes/products');
-var subCategoriesRouter = require('./routes/sub_categories');
+//var subCategoriesRouter = require('./routes/sub_categories');
 var authRouter = require('./routes/auth');
 
 var loadenv = require('dotenv').config();
@@ -45,7 +45,7 @@ app.use('/cart', cartRouter);
 app.use('/customers', customersRouter);
 app.use('/orders', ordersRouter);
 app.use('/products', productsRouter);
-app.use('/sub_categories', subCategoriesRouter);
+//app.use('/sub_categories', subCategoriesRouter);
 app.use('/', authRouter);
 
 // catch 404 and forward to error handler
