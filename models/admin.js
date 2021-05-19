@@ -2,7 +2,6 @@ module.exports = (sequelize, Sequelize) => {
     const Admin = sequelize.define("admin", {
         id: {
             type: Sequelize.INTEGER,
-            primaryKey: true,
             unique: true,
             references: {
                 model: 'users',

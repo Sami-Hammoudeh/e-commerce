@@ -8,5 +8,5 @@ router.post('/', Controller.addAdmin);
 router.delete('/', Controller.deleteAllAdmins);
 router.delete('/:id', Controller.deleteAdmin);
 router.put('/:id', Controller.updateAdmin);
-
+router.put('/:id/password', Controller.changePassword);
 module.exports = router;
