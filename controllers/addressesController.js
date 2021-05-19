@@ -68,8 +68,7 @@ exports.getAllAddresses = function (req, res) {
 
 exports.deleteAllAddresses = function (req, res) {
     Address.destroy({
-        where: {},
-        truncate: false
+        where: {}
     })
         .then(num => {
             res.send({
