@@ -59,7 +59,9 @@ exports.addAdmin = async function (req, res) {
 
 exports.getAdmin = function (req, res) {
     Admin.findOne({
-        where: { id: req.params.id }
+        where: {
+            id: { [Op.and]: [req.params.id, req.user.id] }
+        }
     })
         .then(data => {
             if (data == null) {
@@ -145,6 +147,7 @@ exports.deleteAdmin = function (req, res) {
 
 exports.updateAdmin = function (req, res) {
     const id = req.params.id;
+    if (req.user.id != id) return res.status(400).send("You are not authorized to update this admin");
     if (req.body.id) return res.status(400).send("Cannot update id");
     if (req.body.password) return res.status(400).send("Cannot update password from here");
     Admin.update(req.body, {
@@ -170,6 +173,7 @@ exports.updateAdmin = function (req, res) {
 
 exports.changePassword = async function (req, res) {
     const id = req.params.id;
+    if (req.user.id != id) return res.status(400).send("You are not authorized to update this admin");
     // generate salt to hash password
     const salt = await bcrypt.genSalt(10);
     Admin.update(
