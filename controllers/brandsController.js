@@ -129,3 +129,59 @@ exports.updateBrand = function (req, res) {
             });
         });
 }
+
+exports.addProduct = function (req, res) {
+    Product.findByPk(req.params.id)
+        .then(data => {
+            res.send({
+                'Data': data,
+                'Status': 200
+            });
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving the Product " + req.params.id + "."
+            });
+        });
+
+}
+
+eexports.deleteProduct = function (req, res) {
+    const id = req.params.id;
+    Product.destroy({
+        where: { id: id }
+    })
+        .then(num => {
+            if (num == 1) {
+                res.send({
+                    message: "Product was deleted successfully."
+                });
+            } else {
+                res.send({
+                    message: `Cannot delete Product with id ${id}. Maybe Product was not found!`
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Error deleting Product with id " + id
+            });
+        });
+}
+
+exports.getAllProducts = function (req, res) {
+    brand.findAll()
+    .then(data => {
+        res.send({
+            'Data': data,
+            'Status': 200
+        });
+    })
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Some error occurred while retrieving Brands."
+        });
+    });
+}
