@@ -1,26 +1,8 @@
 const db = require("../models");
 const Customer = db.customers;
 
-exports.addCustomer = function (req, res) {
-   
-        if (!req.body.id || !req.body.email || !req.body.password || !req.body.first_name || !req.body.	last_name) {
-        res.status(400).send({
-            message: "id, email, password, first_name and last_name can not be empty!"
-        });
-        return;
-    }
-    
-    const customer = {
-        
-        id: req.body.id,
-        email: req.body.email,
-        password: req.body.password,
-        first_name: req.body.firstname,
-        last_name: req.body.last_name
-    
-    };
-    
-    Customer.create(customer)
+exports.getCustomer = function (req, res) {
+    Customer.findByPk(req.params.id)
         .then(data => {
             res.send({
                 'Data': data,
@@ -30,58 +12,39 @@ exports.addCustomer = function (req, res) {
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while creating a new customer."
+                    err.message || "Some error occurred while retrieving the Customer" + req.params.id + "."
             });
         });
-    }
-
-
-exports.getCustomer = function (req, res) {
-    Customer.findByPk(req.params.id)
-    .then(data => {
-        res.send({
-            'Data': data,
-            'Status': 200
-        });
-    })
-    .catch(err => {
-        res.status(500).send({
-            message:
-                err.message || "Some error occurred while retrieving the Customer" + req.params.id + "."
-        });
-    });
 }
 
 exports.getAllCustomers = function (req, res) {
     Customer.findAll()
-    .then(data => {
-        res.send({
-            'Data': data,
-            'Status': 200
+        .then(data => {
+            res.send({
+                'Data': data,
+                'Status': 200
+            });
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving Customers."
+            });
         });
-    })
-    .catch(err => {
-        res.status(500).send({
-            message:
-                err.message || "Some error occurred while retrieving Customer."
-        });
-    });
 }
 
 exports.deleteAllCustomers = function (req, res) {
     Customer.destroy({
-        where: {},
-        truncate: false
+        where: {}
     })
         .then(num => {
             res.send({
-                message: `${num} Categories were deleted successfully!`
+                message: `${num} Customers were deleted successfully!`
             });
-    
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error deleting Categories"
+                message: "Error deleting Customers"
             });
         });
 }
@@ -98,7 +61,7 @@ exports.deleteCustomer = function (req, res) {
                 });
             } else {
                 res.send({
-                    message: `Cannot delete Customer with id ${id}. Maybe Customer found!`
+                    message: `Cannot delete Customer with id ${id}. Maybe Customer not found!`
                 });
             }
         })
@@ -129,6 +92,33 @@ exports.updateCustomer = function (req, res) {
         .catch(err => {
             res.status(500).send({
                 message: `Error updating Customer with id=${id}`
+            });
+        });
+}
+
+exports.changePassword = function (req, res) {
+    const id = req.params.id;
+    Customer.update(
+        { password: req.body.password },
+        {
+            fields: ['password'],
+            where: { id: id }
+        }
+    )
+        .then(num => {
+            if (num == 1) {
+                res.send({
+                    message: "Customers password was updated successfully."
+                });
+            } else {
+                res.send({
+                    message: `Cannot change the password to Customer with id=${id}. Maybe Customer was not found!`
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: `Error changing password to Customer with id=${id}`
             });
         });
 }
