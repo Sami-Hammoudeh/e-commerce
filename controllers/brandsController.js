@@ -170,26 +170,42 @@ exports.addProduct = function (req, res) {
 }
 
 exports.deleteProduct = function (req, res) {
-    const id = req.params.id;
-    Product.destroy({
-        where: { id: id }
+    Product.findByPk(req.params.id)
+    .then(data => {
+        res.send({
+            'Data': data,
+            'Status': 200
+        });
+    })
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Some error occurred while retrieving the Product " + req.params.id + "."
+        });
+    });
+    Product.update(
+      { brand_id: null },
+            {
+                fields: ['brand_id'],
+        where: { id: req.body.id}
     })
         .then(num => {
             if (num == 1) {
                 res.send({
-                    message: "Product was deleted successfully."
+                    message: "Product was updated successfully."
                 });
             } else {
                 res.send({
-                    message: `Cannot delete Product with id ${id}. Maybe Product was not found!`
+                    message: `Cannot update the Product with id=${id}. Maybe Product was not found!`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error deleting Product with id " + id
+                message: `Error updating Product with id=${id}`
             });
         });
+
 }
 
 exports.getAllProducts = function (req, res) {
