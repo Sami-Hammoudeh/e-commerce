@@ -147,7 +147,7 @@ exports.addProduct = function (req, res) {
 
 }
 
-eexports.deleteProduct = function (req, res) {
+exports.deleteProduct = function (req, res) {
     const id = req.params.id;
     Product.destroy({
         where: { id: id }
