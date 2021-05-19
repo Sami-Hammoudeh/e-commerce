@@ -1,8 +1,9 @@
 const db = require("../models");
+const bcrypt = require('bcrypt');
 const Customer = db.customers;
 
 exports.getCustomer = function (req, res) {
-    Customer.findByPk(req.params.id)
+    Customer.findOne({where:{id:req.params.id}})
         .then(data => {
             res.send({
                 'Data': data,
@@ -74,8 +75,8 @@ exports.deleteCustomer = function (req, res) {
 
 exports.updateCustomer = function (req, res) {
     const id = req.params.id;
-    if (req.body.id) res.status(400).send("Cannot update id");
-    if (req.body.password) res.status(400).send("Cannot update password from here");
+    if (req.body.id) return res.status(400).send("Cannot update id");
+    if (req.body.password) return res.status(400).send("Cannot update password from here");
     Customer.update(req.body, {
         where: { id: id }
     })
@@ -97,10 +98,12 @@ exports.updateCustomer = function (req, res) {
         });
 }
 
-exports.changePassword = function (req, res) {
+exports.changePassword = async function (req, res) {
     const id = req.params.id;
+    // generate salt to hash password
+    const salt = await bcrypt.genSalt(10);
     Customer.update(
-        { password: req.body.password },
+        { password: await bcrypt.hash(req.body.password, salt) },
         {
             fields: ['password'],
             where: { id: id }

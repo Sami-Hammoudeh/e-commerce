@@ -33,6 +33,7 @@ const signUp = async function (req, res) {
             Customer.create(customer)
                 .then(data => {
                     res.send({
+                        id: data.id,
                         email: customer.email,
                         password: customer.password,
                         first_name: customer.first_name,
