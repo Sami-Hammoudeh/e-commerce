@@ -30,13 +30,24 @@ const signUp = async function (req, res) {
     User.create(user)
         .then(data => {
             customer.id = data.id;
-            Customer.create(customer);
-            res.send({
-                email: customer.email,
-                password: customer.password,
-                first_name: customer.first_name,
-                last_name: customer.last_name
-            });
+            Customer.create(customer)
+                .then(data => {
+                    res.send({
+                        email: customer.email,
+                        password: customer.password,
+                        first_name: customer.first_name,
+                        last_name: customer.last_name
+                    });
+                })
+                .catch(err => {
+                    User.destroy({
+                        where: { id: data.id }
+                    })
+                    res.status(500).send({
+                        message:
+                            err.message || "Some error occurred while creating the user."
+                    });
+                });
         })
         .catch(err => {
             res.status(500).send({
