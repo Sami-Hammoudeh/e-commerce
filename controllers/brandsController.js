@@ -1,3 +1,4 @@
+const { where } = require("sequelize/types");
 const db = require("../models");
 const brand = require("../models/brand");
 const Brand = db.brands;
@@ -192,24 +193,27 @@ exports.deleteProduct = function (req, res) {
         .then(num => {
             if (num == 1) {
                 res.send({
-                    message: "Product was updated successfully."
+                    message: "Product was deleted successfully."
                 });
             } else {
                 res.send({
-                    message: `Cannot update the Product with id=${id}. Maybe Product was not found!`
+                    message: `Cannot delete the Product with id=${id}. Maybe Product was not found!`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: `Error updating Product with id=${id}`
+                message: `Error deleting Product with id=${id}`
             });
         });
 
 }
 
 exports.getAllProducts = function (req, res) {
-    brand.findAll()
+    product.findAll({
+        where:{brand_id:req.params.id}
+        
+    })
     .then(data => {
         res.send({
             'Data': data,
@@ -219,7 +223,8 @@ exports.getAllProducts = function (req, res) {
     .catch(err => {
         res.status(500).send({
             message:
-                err.message || "Some error occurred while retrieving Brands."
+                err.message || "Some error occurred while retrieving Products."
         });
     });
+
 }
