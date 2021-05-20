@@ -4,15 +4,15 @@ const Address = db.addresses;
 
 exports.addAddress = function (req, res) {
     // Validate request
-    if (!req.body.country || !req.body.city || !req.body.zip_code || !req.body.phone || !req.body.customer_id) {
+    if (!req.body.country || !req.body.city || !req.body.zip_code || !req.body.phone) {
         res.status(400).send({
-            message: "Country, City, ZIP_Code, Phone and Customer_email can not be empty!"
+            message: "Country, City, ZIP_Code and Phone can not be empty!"
         });
         return;
     }
     // Create an Address
     const address = {
-        customer_id: req.body.customer_id,
+        customer_id: req.user.id,
         country: req.body.country,
         city: req.body.city,
         zip_code: req.body.zip_code,
@@ -35,7 +35,7 @@ exports.addAddress = function (req, res) {
 }
 
 exports.getAddress = function (req, res) {
-    Address.findByPk(req.params.id)
+    Address.findByOne({ where: { id: req.params.id, customer_id: req.user.id } })
         .then(data => {
             res.send({
                 'Data': data,
@@ -51,7 +51,7 @@ exports.getAddress = function (req, res) {
 }
 
 exports.getAllAddresses = function (req, res) {
-    Address.findAll()
+    Address.findAll({ where: { customer_id: req.user.id } })
         .then(data => {
             res.send({
                 'Data': data,
@@ -68,7 +68,7 @@ exports.getAllAddresses = function (req, res) {
 
 exports.deleteAllAddresses = function (req, res) {
     Address.destroy({
-        where: {}
+        where: { customer_id: req.user.id }
     })
         .then(num => {
             res.send({
@@ -86,7 +86,7 @@ exports.deleteAllAddresses = function (req, res) {
 exports.deleteAddress = function (req, res) {
     const id = req.params.id;
     Address.destroy({
-        where: { id: id }
+        where: { id: id, customer_id: req.user.id }
     })
         .then(num => {
             if (num == 1) {
@@ -108,9 +108,9 @@ exports.deleteAddress = function (req, res) {
 
 exports.updateAddress = function (req, res) {
     const id = req.params.id;
-
+    if (req.body.id || req.body.customer_id) return res.status(300).send("Bad request");
     Address.update(req.body, {
-        where: { id: id }
+        where: { id: id, customer_id: req.user.id }
     })
         .then(num => {
             if (num == 1) {
@@ -119,7 +119,7 @@ exports.updateAddress = function (req, res) {
                 });
             } else {
                 res.send({
-                    message: `Cannot update the Address with id=${id}. Maybe Address was not found!`
+                    message: `Cannot update the Address with id=${id}. Maybe Address was not found! ${req.user.id}`
                 });
             }
         })
