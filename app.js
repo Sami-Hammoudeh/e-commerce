@@ -17,6 +17,12 @@ var productsRouter = require('./routes/products');
 //var subCategoriesRouter = require('./routes/sub_categories');
 var authRouter = require('./routes/auth');
 
+//Middleware
+var isAdmin = require("./middleware/isAdmin");
+var isCustomer = require("./middleware/isCustomer");
+var isMainAdmin = require("./middleware/isMainAdmin");
+var isAuth = require("./middleware/isAuth");
+
 var loadenv = require('dotenv').config();
 
 var app = express();
@@ -24,7 +30,7 @@ var app = express();
 // connect to database
 const db = require("./models");
 const { categories } = require('./models');
-db.sequelize.sync({alter:true});
+db.sequelize.sync({ alter: true });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -37,8 +43,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/addresses', addressesRouter);
-app.use('/admins', adminsRouter);
+app.use('/addresses', isCustomer, addressesRouter);
+app.use('/admins', isAdmin, adminsRouter);
 app.use('/brands', brandsRouter);
 app.use('/cart', cartRouter);
 //app.use('/categories', categoriesRouter);
@@ -49,12 +55,12 @@ app.use('/products', productsRouter);
 app.use('/', authRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
