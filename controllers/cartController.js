@@ -1,5 +1,4 @@
 const db = require("../models");
-const { getAllOrders } = require("./cartController");
 const Order = db.orders;
 
 exports.addOrder = function (req, res) {
@@ -37,10 +36,7 @@ exports.getAllOrders = function (req, res) {
   //const id =req.params.id
     Order.findAll(
     { 
-        where:
-        {
-        id =req.params.cart_id
-        }
+        where:{id :req.params.cart_id}
     }
 )
 .then(data => {
@@ -61,7 +57,7 @@ exports.deleteAllOrders = function (req, res) {
     Order.findAll(
         { 
             attributes:['id','cart_id','product_id','address_id','quantity','amount','time_date','status','paid','customer_id'],
-            where: { cart_id =req.params.cart_id}
+          where: { cart_id :req.params.cart_id}
         }
     )
    // const id = req.params.cart_id;
@@ -131,7 +127,7 @@ exports.checkout = function (req, res) {
     Order.findAll(
         { 
             attributes:['id','cart_id','product_id','address_id','quantity','amount','time_date','status','paid','customer_id'],
-            where: { cart_id =req.params.cart_id}
+          where: { cart_id :req.params.cart_id}
         }
     )
  

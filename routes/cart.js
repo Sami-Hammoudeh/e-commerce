@@ -3,12 +3,10 @@ var router = express.Router();
 const Controller = require('../controllers/cartController');
 
 
-router.get('/:id', Controller.getAllOrders);
+router.get('/:cart_id', Controller.getAllOrders);
 router.post('/', Controller.addOrder);
 router.delete('/', Controller.deleteAllOrders);
-router.delete('/:id', Controller.deleteOrder);
-router.get('/', Controller.checkout);
-
-
+router.delete('/:cart_id', Controller.deleteOrder);
+router.get('/:cart_id', Controller.checkout);
 
 module.exports = router;
