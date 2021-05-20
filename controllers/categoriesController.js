@@ -1,6 +1,7 @@
 const db = require("../models");
 const Category = db.categories;
 
+
 exports.addCategory = function (req, res) {
     if (!req.body.id || !req.body.name || !req.body.descrption) {
     res.status(400).send({
