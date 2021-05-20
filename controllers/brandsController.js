@@ -1,35 +1,36 @@
 const db = require("../models");
 const brand = require("../models/brand");
 const Brand = db.brands;
+const Product = db.products;
 
 exports.addBrand = function (req, res) {
-  // Validate request
-  if (!req.body.id || !req.body.name || !req.body.description) {
-    res.status(400).send({
-        message: "Id, Name and description can not be empty!"
-    });
-    return;
-}
-// Create an Brands
-const brand = {
-    id: req.body.id,
-    name: req.body.name,
-    description: req.body.description
-};
-// Save Brand in the database
-Brand.create(brand)
-    .then(data => {
-        res.send({
-            'Data': data,
-            'Status': 200
+    // Validate request
+    if (!req.body.name || !req.body.description) {
+        res.status(400).send({
+            message: "Name and description can not be empty!"
         });
-    })
-    .catch(err => {
-        res.status(500).send({
-            message:
-                err.message || "Some error occurred while creating a new Brand."
+        return;
+    }
+    // Create an Brands
+    const brand = {
+        id: req.body.id,
+        name: req.body.name,
+        description: req.body.description
+    };
+    // Save Brand in the database
+    Brand.create(brand)
+        .then(data => {
+            res.send({
+                'Data': data,
+                'Status': 200
+            });
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while creating a new Brand."
+            });
         });
-    });
 }
 
 exports.getBrand = function (req, res) {
@@ -50,25 +51,24 @@ exports.getBrand = function (req, res) {
 }
 
 exports.getAllBrands = function (req, res) {
-    brand.findAll()
-    .then(data => {
-        res.send({
-            'Data': data,
-            'Status': 200
+    Brand.findAll()
+        .then(data => {
+            res.send({
+                'Data': data,
+                'Status': 200
+            });
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving Brands."
+            });
         });
-    })
-    .catch(err => {
-        res.status(500).send({
-            message:
-                err.message || "Some error occurred while retrieving Brands."
-        });
-    });
 }
 
 exports.deleteAllBrands = function (req, res) {
     Brand.destroy({
-        where: {},
-        truncate: false
+        where: {}
     })
         .then(num => {
             res.send({
@@ -131,64 +131,40 @@ exports.updateBrand = function (req, res) {
 }
 
 exports.addProduct = function (req, res) {
-    Product.findByPk(req.params.id)
-        .then(data => {
-            res.send({
-                'Data': data,
-                'Status': 200
-            });
+    const id = req.body.id;
+    Product.update(
+        { brand_id: req.params.id },
+        {
+            fields: ['brand_id'],
+            where: { id: req.body.id }
+        })
+        .then(num => {
+            if (num == 1) {
+                res.send({
+                    message: "Product was added successfully."
+                });
+            } else {
+                res.send({
+                    message: `Cannot add the Product with id=${id}. Maybe Product was not found!`
+                });
+            }
         })
         .catch(err => {
             res.status(500).send({
-                message:
-                    err.message || "Some error occurred while retrieving the Product " + req.params.id + "."
+                message: `Error adding Product with id=${id}`
             });
         });
-        Product.update(
-          { brand_id: req.params.id },
-                {
-                    fields: ['brand_id'],
-            where: { id: req.body.id}
-        })
-            .then(num => {
-                if (num == 1) {
-                    res.send({
-                        message: "Product was updated successfully."
-                    });
-                } else {
-                    res.send({
-                        message: `Cannot update the Product with id=${id}. Maybe Product was not found!`
-                    });
-                }
-            })
-            .catch(err => {
-                res.status(500).send({
-                    message: `Error updating Product with id=${id}`
-                });
-            });
 
 }
 
 exports.deleteProduct = function (req, res) {
-    Product.findByPk(req.params.id)
-    .then(data => {
-        res.send({
-            'Data': data,
-            'Status': 200
-        });
-    })
-    .catch(err => {
-        res.status(500).send({
-            message:
-                err.message || "Some error occurred while retrieving the Product " + req.params.id + "."
-        });
-    });
+    const id = req.params.product_id;
     Product.update(
-      { brand_id: null },
-            {
-                fields: ['brand_id'],
-        where: { id: req.body.id}
-    })
+        { brand_id: null },
+        {
+            fields: ['brand_id'],
+            where: { id: id }
+        })
         .then(num => {
             if (num == 1) {
                 res.send({
@@ -209,21 +185,20 @@ exports.deleteProduct = function (req, res) {
 }
 
 exports.getAllProducts = function (req, res) {
-    product.findAll({
-        where:{brand_id:req.params.id}
-        
-    })
-    .then(data => {
-        res.send({
-            'Data': data,
-            'Status': 200
-        });
-    })
-    .catch(err => {
-        res.status(500).send({
-            message:
-                err.message || "Some error occurred while retrieving Products."
-        });
-    });
+    Product.findAll({
+        where: { brand_id: req.params.id }
 
+    })
+        .then(data => {
+            res.send({
+                'Data': data,
+                'Status': 200
+            });
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving Products."
+            });
+        });
 }
