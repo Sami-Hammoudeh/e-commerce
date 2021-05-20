@@ -1,13 +1,13 @@
 const db = require("../models");
 const Order = db.orders;
-
+//const Cart=db.Cart;
 
 exports.addOrder = function (req, res) {
    
     if (!req.body.id || !req.body.cart_id || !req.body.product_id || !req.body.address_id || !req.body.	quantity
-        || !req.body.amount|| !req.body.time_date|| !req.body.status|| !req.body.paid) {
+        || !req.body.amount|| !req.body.time_date|| !req.body.status|| !req.body.paid || !req.body.customer_id) {
     res.status(400).send({
-        message: "id, cart_id, product_id, address_id, quantity, amount, time_date, status and paid can not be empty!"
+        message: "id, cart_id, product_id, address_id, quantity, amount, time_date, status, paid and customer_id can not be empty!"
     });
     return;
 }
@@ -59,7 +59,15 @@ Order.findByPk(req.params.id)
 }
 
 exports.getAllOrders = function (req, res) {
-Order.findAll()
+//const cart_id
+    Order.findAll(
+    /*{ 
+        where:
+        {
+        cart_id =req.body.cart_id
+        }
+    }*/
+)
 .then(data => {
     res.send({
         'Data': data,

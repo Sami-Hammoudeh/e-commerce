@@ -1,18 +1,18 @@
 const db = require("../models");
 const Order = db.orders;
+//const Product= require("../models/product");
 
 exports.addOrder = function (req, res) {
-   
+   /*
     if (!req.body.id || !req.body.cart_id || !req.body.product_id || !req.body.address_id || !req.body.	quantity
         || !req.body.amount|| !req.body.time_date|| !req.body.status|| !req.body.paid) {
     res.status(400).send({
         message: "id, cart_id, product_id, address_id, quantity, amount, time_date, status and paid can not be empty!"
     });
     return;
-}
+}*/
 
 const order = {
-    
     id: req.body.id,
     cart_id: req.body.cart_id,
     product_id: req.body.product_id,
@@ -21,7 +21,8 @@ const order = {
     amount: req.body.amount,
     time_date: req.body.time_date,
     status: req.body.status,
-    paid: req.body.paid
+    paid: req.body.paid,
+    customer_id: req.body.customer_id
 
 };
 
@@ -40,29 +41,7 @@ Order.create(order)
     });
 }
 
-exports.updateOrder = function (req, res) {
-    const id = req.params.id;
-    
-    Order.update(req.body, {
-        where: { id: id }
-    })
-        .then(num => {
-            if (num == 1) {
-                res.send({
-                    message: "Order was updated successfully."
-                });
-            } else {
-                res.send({
-                    message: `Cannot update the Order with id=${id}. Maybe Order was not found!`
-                });
-            }
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: `Error updating Order with id=${id}`
-            });
-        });
-    }
+
 
     exports.getOrder = function (req, res) {
         Order.findByPk(req.params.id)
