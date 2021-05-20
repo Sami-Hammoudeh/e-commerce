@@ -50,7 +50,7 @@ app.use('/brands', brandsRouter);
 app.use('/cart', cartRouter);
 //app.use('/categories', categoriesRouter);
 app.use('/customers', customersRouter);
-app.use('/orders', ordersRouter);
+app.use('/orders', isCustomer, ordersRouter);
 app.use('/products', productsRouter);
 //app.use('/sub_categories', subCategoriesRouter);
 app.use('/', authRouter);
