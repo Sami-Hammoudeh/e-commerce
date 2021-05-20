@@ -226,7 +226,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"sameakram2@gmail.com\",\r\n    \"password\":\"Sami\",\r\n    \"role\":\"admin\"\r\n}",
+							"raw": "{\r\n    \"email\":\"sameakram2@gmail.c\",\r\n    \"password\":\"Sami\",\r\n    \"role\":\"customer\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -690,7 +690,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"id\":4\r\n}",
+									"raw": "{\r\n    \"id\":6\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -698,14 +698,14 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:3030/brands/2/products",
+									"raw": "localhost:3030/brands/4/products",
 									"host": [
 										"localhost"
 									],
 									"port": "3030",
 									"path": [
 										"brands",
-										"2",
+										"4",
 										"products"
 									]
 								}
@@ -770,14 +770,14 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:3030/brands/2/products",
+									"raw": "localhost:3030/brands/4/products",
 									"host": [
 										"localhost"
 									],
 									"port": "3030",
 									"path": [
 										"brands",
-										"2",
+										"4",
 										"products"
 									]
 								}
@@ -1166,6 +1166,334 @@
 							"path": [
 								"products",
 								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Dashboard",
+			"item": [
+				{
+					"name": "Get Stock",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjIxNTA5NTM4fQ.ZrtLEuw8i-k0a02aNZT8evSgeJCPlZmGHnfBjN48kZY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3030/dashboard/stock",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"dashboard",
+								"stock"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Income",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjIxNTA5NTM4fQ.ZrtLEuw8i-k0a02aNZT8evSgeJCPlZmGHnfBjN48kZY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3030/dashboard/income",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"dashboard",
+								"income"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Brands",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjIxNTA5NTM4fQ.ZrtLEuw8i-k0a02aNZT8evSgeJCPlZmGHnfBjN48kZY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3030/dashboard/brands",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"dashboard",
+								"brands"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Add Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImlhdCI6MTYyMTUxNDg5Nn0.JlRnQ6LkeRc_vclROyiI3ziYoqurL6tuk-MFjy_rhv0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product_id\":6,\r\n    \"address_id\":9,\r\n    \"quantity\":5,\r\n    \"amount\":20,\r\n    \"time_date\":\"2020-12-25\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3030/orders",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImlhdCI6MTYyMTUxNDg5Nn0.JlRnQ6LkeRc_vclROyiI3ziYoqurL6tuk-MFjy_rhv0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product_id\":6,\r\n    \"address_id\":9,\r\n    \"quantity\":5,\r\n    \"amount\":20,\r\n    \"time_date\":\"2020-12-25\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3030/orders/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"orders",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Orders",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImlhdCI6MTYyMTUxNDg5Nn0.JlRnQ6LkeRc_vclROyiI3ziYoqurL6tuk-MFjy_rhv0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product_id\":6,\r\n    \"address_id\":9,\r\n    \"quantity\":5,\r\n    \"amount\":20,\r\n    \"time_date\":\"2020-12-25\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3030/orders",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImlhdCI6MTYyMTUxNDg5Nn0.JlRnQ6LkeRc_vclROyiI3ziYoqurL6tuk-MFjy_rhv0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product_id\":6,\r\n    \"address_id\":9,\r\n    \"quantity\":5,\r\n    \"amount\":20,\r\n    \"time_date\":\"2020-12-25\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3030/orders/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"orders",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete All Orders",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImlhdCI6MTYyMTUxNDg5Nn0.JlRnQ6LkeRc_vclROyiI3ziYoqurL6tuk-MFjy_rhv0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product_id\":6,\r\n    \"address_id\":9,\r\n    \"quantity\":5,\r\n    \"amount\":20,\r\n    \"time_date\":\"2020-12-25\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3030/orders",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImlhdCI6MTYyMTUxNDg5Nn0.JlRnQ6LkeRc_vclROyiI3ziYoqurL6tuk-MFjy_rhv0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product_id\":6,\r\n    \"address_id\":9,\r\n    \"quantity\":15,\r\n    \"amount\":20,\r\n    \"time_date\":\"2020-12-25\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3030/orders/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"orders",
+								"2"
 							]
 						}
 					},
