@@ -1,0 +1,1177 @@
+{
+	"info": {
+		"_postman_id": "2e4ff74a-e816-4ac8-abd0-fa87a562b1f9",
+		"name": "E-Commerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Addresses",
+			"item": [
+				{
+					"name": "Get All Addresses",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImlhdCI6MTYyMTUwMjQ0OH0.5ghmOBBko8jgsT3261EYeEtI5QrLc6fmR6it-DaDiOo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3030/addresses",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"addresses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Address",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3030/addresses/7",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"addresses",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImlhdCI6MTYyMTUwMjQ0OH0.5ghmOBBko8jgsT3261EYeEtI5QrLc6fmR6it-DaDiOo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3030/addresses/8",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"addresses",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete All Addresses",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImlhdCI6MTYyMTUwMjM1NX0.hgDVdoqnCQOETeei5aXRCZxOPIBm6bFtpQfJcBZ7JcU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3030/addresses",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"addresses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImlhdCI6MTYyMTUwMjM1NX0.hgDVdoqnCQOETeei5aXRCZxOPIBm6bFtpQfJcBZ7JcU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"country\":\"USA\",\r\n    \"city\":\"LA\",\r\n    \"zip_code\":12345,\r\n    \"phone\":\"0523513396\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3030/addresses",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"addresses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImlhdCI6MTYyMTUwMjQ0OH0.5ghmOBBko8jgsT3261EYeEtI5QrLc6fmR6it-DaDiOo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"zip_code\":123456,\r\n    \"phone\":\"0523513396\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3030/addresses/9",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"addresses",
+								"9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login & SignUp",
+			"item": [
+				{
+					"name": "SignUp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"sameakram2@gmail.c\",\r\n    \"password\":\"Sami\",\r\n    \"first_name\":\"Sami\",\r\n    \"last_name\":\"Hammoudeh\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3030/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LogIn",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"sameakram2@gmail.com\",\r\n    \"password\":\"Sami\",\r\n    \"role\":\"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3030/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admins",
+			"item": [
+				{
+					"name": "View Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjIxNDYxMjc2fQ.DMZZV6av1Z1jKJXU7SdAVS8wpjveltfBQM2WXT7nKv8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3030/admins/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"admins",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjIxNDYxMjc2fQ.DMZZV6av1Z1jKJXU7SdAVS8wpjveltfBQM2WXT7nKv8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3030/admins/14",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"admins",
+								"14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete All Admins",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3030/admins",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"admins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Admins",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjIxNDYxMjc2fQ.DMZZV6av1Z1jKJXU7SdAVS8wpjveltfBQM2WXT7nKv8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3030/admins",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"admins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjIxNDYxMjc2fQ.DMZZV6av1Z1jKJXU7SdAVS8wpjveltfBQM2WXT7nKv8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"sameakram2@gmail.co\",\r\n    \"password\":\"Sami\",\r\n    \"first_name\":\"Sami\",\r\n    \"last_name\":\"Hammoudeh\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3030/admins",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"admins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjIxNDYxMjc2fQ.DMZZV6av1Z1jKJXU7SdAVS8wpjveltfBQM2WXT7nKv8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\":\"Sami\",\r\n    \"last_name\":\"Hammoudeh\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3030/admins/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"admins",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjIxNDYxMjc2fQ.DMZZV6av1Z1jKJXU7SdAVS8wpjveltfBQM2WXT7nKv8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\":\"Sami\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3030/admins/1/password",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"admins",
+								"1",
+								"password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customers",
+			"item": [
+				{
+					"name": "View Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImlhdCI6MTYyMTUwMDU2N30.LQr5y0sCCVerNci74WV6UNi3x891JWVd2SsSkmalNPo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3030/customers/16",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"customers",
+								"16"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Customers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjIxNDYxMjc2fQ.DMZZV6av1Z1jKJXU7SdAVS8wpjveltfBQM2WXT7nKv8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3030/customers",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Customer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjIxNTAwMzY1fQ.US1bMN8NulC7nLHkCVDDqy3BtNlHboLIwZDre7cVZ1Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3030/customers/15",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"customers",
+								"15"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete All Customer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjIxNTAwMzY1fQ.US1bMN8NulC7nLHkCVDDqy3BtNlHboLIwZDre7cVZ1Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3030/customers",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTYyMTQ5OTg5Nn0.K9zKV54JJ-7rjsqb7Yf2VK9gRcxyuBOWDVoz3xo1bEk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"sameakram2@gmail.com\",\r\n    \"first_name\":\"Sami\",\r\n    \"last_name\":\"Hammoudeh\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3030/customers/13",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"customers",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTYyMTQ5OTg5Nn0.K9zKV54JJ-7rjsqb7Yf2VK9gRcxyuBOWDVoz3xo1bEk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\":\"Sami\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3030/customers/13/password",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"customers",
+								"13",
+								"password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Brands",
+			"item": [
+				{
+					"name": "Products",
+					"item": [
+						{
+							"name": "Add Product to Brand",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjIxNTA5NTM4fQ.ZrtLEuw8i-k0a02aNZT8evSgeJCPlZmGHnfBjN48kZY",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\":4\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3030/brands/2/products",
+									"host": [
+										"localhost"
+									],
+									"port": "3030",
+									"path": [
+										"brands",
+										"2",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Product from Brand",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjIxNTA5NTM4fQ.ZrtLEuw8i-k0a02aNZT8evSgeJCPlZmGHnfBjN48kZY",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3030/brands/2/products/4",
+									"host": [
+										"localhost"
+									],
+									"port": "3030",
+									"path": [
+										"brands",
+										"2",
+										"products",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Products",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\":1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3030/brands/2/products",
+									"host": [
+										"localhost"
+									],
+									"port": "3030",
+									"path": [
+										"brands",
+										"2",
+										"products"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Add Brand",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjIxNTA5NTM4fQ.ZrtLEuw8i-k0a02aNZT8evSgeJCPlZmGHnfBjN48kZY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Nike\",\r\n    \"description\":\"nike\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3030/brands",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"brands"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Brand",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3030/brands/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"brands",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Brands",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3030/brands",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"brands"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Brand",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjIxNTA5NTM4fQ.ZrtLEuw8i-k0a02aNZT8evSgeJCPlZmGHnfBjN48kZY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3030/brands/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"brands",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete All Brands",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjIxNTA5NTM4fQ.ZrtLEuw8i-k0a02aNZT8evSgeJCPlZmGHnfBjN48kZY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3030/brands",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"brands"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Brand",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjIxNTA5NTM4fQ.ZrtLEuw8i-k0a02aNZT8evSgeJCPlZmGHnfBjN48kZY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\":\"updated\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3030/brands/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"brands",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Add product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjIxNTA5NTM4fQ.ZrtLEuw8i-k0a02aNZT8evSgeJCPlZmGHnfBjN48kZY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"P1\",\r\n    \"price\":20.5,\r\n    \"description\":\"product\",\r\n    \"stock\":100,\r\n    \"published\":true,\r\n    \"color\":\"green\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3030/products",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"P1\",\r\n    \"price\":20.5,\r\n    \"description\":\"product\",\r\n    \"stock\":100,\r\n    \"published\":true,\r\n    \"color\":\"red\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3030/products/4",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"products",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Products",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"P1\",\r\n    \"price\":20.5,\r\n    \"description\":\"product\",\r\n    \"stock\":100,\r\n    \"published\":true,\r\n    \"color\":\"red\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3030/products",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjIxNTA5NTM4fQ.ZrtLEuw8i-k0a02aNZT8evSgeJCPlZmGHnfBjN48kZY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"P1\",\r\n    \"price\":20.5,\r\n    \"description\":\"product\",\r\n    \"stock\":100,\r\n    \"published\":true,\r\n    \"color\":\"red\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3030/products/3",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"products",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete All Products",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjIxNTA5NTM4fQ.ZrtLEuw8i-k0a02aNZT8evSgeJCPlZmGHnfBjN48kZY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"P1\",\r\n    \"price\":20.5,\r\n    \"description\":\"product\",\r\n    \"stock\":100,\r\n    \"published\":true,\r\n    \"color\":\"red\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3030/products",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjIxNTA5NTM4fQ.ZrtLEuw8i-k0a02aNZT8evSgeJCPlZmGHnfBjN48kZY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"color\":\"red\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3030/products/4",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"products",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
