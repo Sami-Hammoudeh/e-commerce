@@ -1,9 +1,14 @@
+const { Op } = require("sequelize");
 const db = require("../models");
 const bcrypt = require('bcrypt');
 const Customer = db.customers;
 
 exports.getCustomer = function (req, res) {
-    Customer.findOne({where:{id:req.params.id}})
+    Customer.findOne({
+        where: {
+            id: { [Op.and]: [req.params.id, req.user.id] }
+        }
+    })
         .then(data => {
             res.send({
                 'Data': data,
@@ -52,6 +57,8 @@ exports.deleteAllCustomers = function (req, res) {
 
 exports.deleteCustomer = function (req, res) {
     const id = req.params.id;
+    if (req.user.role == "customer" && req.user.id != id)
+        return res.status(300).send("You are not authorized to delete this user");
     Customer.destroy({
         where: { id: id }
     })
@@ -75,8 +82,9 @@ exports.deleteCustomer = function (req, res) {
 
 exports.updateCustomer = function (req, res) {
     const id = req.params.id;
-    if (req.body.id) return res.status(400).send("Cannot update id");
-    if (req.body.password) return res.status(400).send("Cannot update password from here");
+    if (req.body.id) return res.status(300).send("Cannot update id");
+    if (req.body.password) return res.status(300).send("Cannot update password from here");
+    if (req.user.id != id) return res.status(300).send("You are not authorized to update this user");
     Customer.update(req.body, {
         where: { id: id }
     })
@@ -100,6 +108,7 @@ exports.updateCustomer = function (req, res) {
 
 exports.changePassword = async function (req, res) {
     const id = req.params.id;
+    if (req.user.id != id) return res.status(300).send("You are not authorized to update this user");
     // generate salt to hash password
     const salt = await bcrypt.genSalt(10);
     Customer.update(
