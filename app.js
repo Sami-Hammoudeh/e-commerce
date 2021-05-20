@@ -16,6 +16,7 @@ var ordersRouter = require('./routes/orders');
 var productsRouter = require('./routes/products');
 //var subCategoriesRouter = require('./routes/sub_categories');
 var authRouter = require('./routes/auth');
+var dashboardRouter = require('./routes/dashboard');
 
 //Middleware
 var isAdmin = require("./middleware/isAdmin");
@@ -53,6 +54,7 @@ app.use('/orders', ordersRouter);
 app.use('/products', productsRouter);
 //app.use('/sub_categories', subCategoriesRouter);
 app.use('/', authRouter);
+app.use('/dashboard', isAdmin, dashboardRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
