@@ -4,6 +4,6 @@ const Controller = require('../controllers/dashboardController');
 
 router.get('/stock', Controller.getStock);
 router.get('/income', Controller.getIncome);
-router.get('/categories', Controller.getCategories);
+router.get('/brands', Controller.getBrands);
 
 module.exports = router;
