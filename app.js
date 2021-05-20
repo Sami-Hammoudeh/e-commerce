@@ -10,11 +10,11 @@ var addressesRouter = require('./routes/addresses');
 var adminsRouter = require('./routes/admins');
 var brandsRouter = require('./routes/brands');
 var cartRouter = require('./routes/cart');
-//var categoriesRouter = require('./routes/categories');
+var categoriesRouter = require('./routes/categories');
 var customersRouter = require('./routes/customers');
 var ordersRouter = require('./routes/orders');
 var productsRouter = require('./routes/products');
-//var subCategoriesRouter = require('./routes/sub_categories');
+var subCategoriesRouter = require('./routes/sub_categories');
 var authRouter = require('./routes/auth');
 var dashboardRouter = require('./routes/dashboard');
 
@@ -48,11 +48,11 @@ app.use('/addresses', isCustomer, addressesRouter);
 app.use('/admins', isAdmin, adminsRouter);
 app.use('/brands', brandsRouter);
 app.use('/cart', cartRouter);
-//app.use('/categories', categoriesRouter);
+app.use('/categories', categoriesRouter);
 app.use('/customers', customersRouter);
 app.use('/orders', isCustomer, ordersRouter);
 app.use('/products', productsRouter);
-//app.use('/sub_categories', subCategoriesRouter);
+app.use('/sub_categories', subCategoriesRouter);
 app.use('/', authRouter);
 app.use('/dashboard', isAdmin, dashboardRouter);
 
