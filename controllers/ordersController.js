@@ -1,48 +1,67 @@
 const db = require("../models");
-const { getAllOrders } = require("./cartController");
 const Order = db.orders;
 
+
+
 exports.addOrder = function (req, res) {
-    const id = req.params.cart_id;
    
-    Order.update(
-        { 
-            cart_id: req.params.id},
-        {
-            fields: ['cart_id'],
-            where: { id: req.body.id }
-        }
-    )
-        .then(num => {
-            if (num == 1) {
-                res.send({
-                    message: "add order was updated successfully."
-                });
-            } else {
-                res.send({
-                    message: `Cannot add order with id=${id}!`
-                });
-            }
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: `Error adding order with id=${id}`
-            });
+    if (!req.body.id || !req.body.cart_id || !req.body.product_id || !req.body.address_id || !req.body.	quantity
+        || !req.body.amount|| !req.body.time_date|| !req.body.status|| !req.body.paid|| !req.body.customer_id) {
+    res.status(400).send({
+        message: "id, cart_id, product_id, address_id, quantity, amount, time_date, status and paid can not be empty!"
+    });
+    return;
+}
+
+const order = {
+    
+    id: req.body.id,
+    cart_id: req.body.cart_id,
+    product_id: req.body.product_id,
+    address_id: req.body.address_id,
+    quantity: req.body.quantity,
+    amount: req.body.amount,
+    time_date: req.body.time_date,
+    status: req.body.status,
+    paid: req.body.paid,
+    customer_id: req.body.customer_id
+
+};
+
+Order.create(order)
+    .then(data => {
+        res.send({
+            'Data': data,
+            'Status': 200
         });
+    })
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Some error occurred while creating a new Order."
+        });
+    });
 }
 
 
+exports.getOrder = function (req, res) {
+Order.findByPk(req.params.id)
+.then(data => {
+    res.send({
+        'Data': data,
+        'Status': 200
+    });
+})
+.catch(err => {
+    res.status(500).send({
+        message:
+            err.message || "Some error occurred while retrieving the Order" + req.params.id + "."
+    });
+});
+}
 
 exports.getAllOrders = function (req, res) {
-  //const cart_id =req.params.id
-    Order.findAll(
-    { 
-        where:
-        {
-        id =req.params.cart_id
-        }
-    }
-)
+Order.findAll()
 .then(data => {
     res.send({
         'Data': data,
@@ -58,109 +77,66 @@ exports.getAllOrders = function (req, res) {
 }
 
 exports.deleteAllOrders = function (req, res) {
-    Order.findAll(
-        { 
-            attributes:['id','cart_id','product_id','address_id','quantity','amount','time_date','status','paid','customer_id'],
-            where: { cart_id =req.params.cart_id}
-        }
-    )
-   // const id = req.params.cart_id;
-   
-    .then(function(orders){
-        orders.forEach(
-            Order.update(
-        { cart_id: null},
-        {
-            fields: ['cart_id'],
-            where: { id: req.body.id }
-        }
-    )) 
-            
-        })
-        
-        .then(num => {
-            if (num == 1) {
-                res.send({
-                    message: "delete order was updated successfully."
-                });
-            } else {
-                res.send({
-                    message: `Cannot delete order with id=${id}!`
-                });
-            }
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: `Error deleting order with id=${id}`
-            });
-        });
-    
-    }
-exports.deleteOrder = function (req, res) {
-    const id = req.params.cart_id;
-   
-    Order.update(
-        { cart_id: null},
-        {
-            fields: ['cart_id'],
-            where: { id: req.body.id }
-        }
-    )
-        .then(num => {
-            if (num == 1) {
-                res.send({
-                    message: "delete order was updated successfully."
-                });
-            } else {
-                res.send({
-                    message: `Cannot delete order with id=${id}!`
-                });
-            }
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: `Error deleting order with id=${id}`
-            });
+Order.destroy({
+    where: {},
+    truncate: false
+})
+    .then(num => {
+        res.send({
+            message: `${num} Categories were deleted successfully!`
         });
 
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: "Error deleting Categories"
+        });
+    });
 }
 
-
-
-exports.checkout = function (req, res) {
-    Order.findAll(
-        { 
-            attributes:['id','cart_id','product_id','address_id','quantity','amount','time_date','status','paid','customer_id'],
-            where: { cart_id =req.params.cart_id}
-        }
-    )
- 
-    .then(function(orders){
-        orders.forEach(
-            Order.update(
-        { cart_id: null, paid:true, customer_id:cart_id},
-        {
-            fields: ['cart_id','paid','customer_id'],
-            where: { id: req.body.id }
-        }
-    )) 
-            
-        })
-        
-        .then(num => {
-            if (num == 1) {
-                res.send({
-                    message: "delete order was updated successfully."
-                });
-            } else {
-                res.send({
-                    message: `Cannot delete order with id=${id}!`
-                });
-            }
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: `Error deleting order with id=${id}`
+exports.deleteOrder = function (req, res) {
+const id = req.params.id;
+Order.destroy({
+    where: { id: id }
+})
+    .then(num => {
+        if (num == 1) {
+            res.send({
+                message: "Order was deleted successfully."
             });
+        } else {
+            res.send({
+                message: `Cannot delete Order with id ${id}. Maybe Order found!`
+            });
+        }
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: "Error deleting Order with id " + id
         });
-    }
+    });
+}
+
+exports.updateOrder = function (req, res) {
+const id = req.params.id;
+
+Order.update(req.body, {
+    where: { id: id }
+})
+    .then(num => {
+        if (num == 1) {
+            res.send({
+                message: "Order was updated successfully."
+            });
+        } else {
+            res.send({
+                message: `Cannot update the Order with id=${id}. Maybe Order was not found!`
+            });
+        }
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: `Error updating Order with id=${id}`
+        });
+    });
+}
