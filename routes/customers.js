@@ -1,12 +1,15 @@
 var express = require('express');
 var router = express.Router();
+var isAdmin = require("../middleware/isAdmin");
+var isCustomer = require("../middleware/isCustomer");
+var isAuth = require("../middleware/isAuth");
 const Controller = require('../controllers/customersController');
 
-router.get('/', Controller.getAllCustomers); //Admin Auth
-router.get('/:id', Controller.getCustomer);
-router.delete('/', Controller.deleteAllCustomers); //Admin Auth
-router.delete('/:id', Controller.deleteCustomer); //Admin and Customer Auth
-router.put('/:id', Controller.updateCustomer);
-router.put('/:id/password', Controller.changePassword);
+router.get('/', isAdmin, Controller.getAllCustomers);
+router.get('/:id', isCustomer, Controller.getCustomer);
+router.delete('/', isAdmin, Controller.deleteAllCustomers); 
+router.delete('/:id', isAuth, Controller.deleteCustomer); 
+router.put('/:id', isCustomer, Controller.updateCustomer);
+router.put('/:id/password', isCustomer, Controller.changePassword);
 
 module.exports = router;
