@@ -70,8 +70,10 @@ const signUp = async function (req, res) {
 const signIn = async function (req, res) {
     if (req.body.role == "customer")
         var user = await Customer.findOne({ where: { email: req.body.email } });
-    else
+    else if (req.body.role == "admin")
         var user = await Admin.findOne({ where: { email: req.body.email } });
+    else
+        return res.status(300).send("role cannot be empty");
     if (!user) return res.status(400).json({ error: 'user not found' });
     // check user password with hashed password stored in the database
     const validPassword = await bcrypt.compare(req.body.password, user.password

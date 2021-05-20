@@ -86,9 +86,6 @@ exports.deleteAllSubCategories = function (req, res) {
     });
 }
 
-
-
-
 exports.deleteSubCategory= function (req, res) {
     const id = req.params.id;
     SubCategory.destroy({
@@ -111,8 +108,6 @@ exports.deleteSubCategory= function (req, res) {
             });
         });
 }
-
-
 
 exports.updateSubCategory= function (req, res) {
     const id = req.params.id;
