@@ -43,6 +43,10 @@ db.users.hasMany(db.customers, { foreignKey: 'id' });
 db.addresses.belongsTo(db.customers, { foreignKey: 'customer_id' });
 db.customers.hasMany(db.addresses, { foreignKey: 'customer_id' });
 
+//Addresses Relations
+db.sub_categories.belongsTo(db.categories, { foreignKey: 'cat_id' });
+db.categories.hasMany(db.sub_categories, { foreignKey: 'cat_id' });
+
 //Orders Relations
 db.orders.belongsTo(db.addresses, { foreignKey: 'address_id' });
 db.addresses.hasMany(db.orders, { foreignKey: 'address_id' });

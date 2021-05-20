@@ -1,20 +1,18 @@
 const db = require("../models");
 const Category = db.categories;
+const SubCategory = db.sub_categories;
 
 exports.addCategory = function (req, res) {
-    if (!req.body.id || !req.body.name || !req.body.descrption) {
+    if (!req.body.name || !req.body.description) {
         res.status(400).send({
-            message: "id,name and descrption can not be empty!"
+            message: "id,name and description can not be empty!"
         });
         return;
     }
 
     const category = {
-
-        id: req.body.id,
         name: req.body.name,
         description: req.body.description
-
     };
 
     Category.create(category)
