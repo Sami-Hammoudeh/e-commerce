@@ -93,7 +93,7 @@ exports.deleteAllCategories = function (req, res) {
 
 
 
-exports.deleteCategoryById = function (req, res) {
+exports.deleteCategoryById= function (req, res) {
     const id = req.params.id;
     Category.destroy({
         where: { id: id }
