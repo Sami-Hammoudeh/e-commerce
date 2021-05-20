@@ -136,5 +136,102 @@ exports.updateSubCategory= function (req, res) {
                 message: `Error updating SubCategory with id=${id}`
             });
         });
+        exports.getAllProducts = function (req, res) {
+            product.findAll({
+                where:{subcategory_id:req.params.id}
+                
+            })
+            .then(data => {
+                res.send({
+                    'Data': data,
+                    'Status': 200
+                });
+            })
+            .catch(err => {
+                res.status(500).send({
+                    message:
+                        err.message || "Some error occurred while retrieving Products."
+                });
+            });
+        
+        }
+        exports.deleteProduct = function (req, res) {
+            Product.findByPk(req.params.id)
+            .then(data => {
+                res.send({
+                    'Data': data,
+                    'Status': 200
+                });
+            })
+            .catch(err => {
+                res.status(500).send({
+                    message:
+                        err.message || "Some error occurred while retrieving the Product " + req.params.id + "."
+                });
+            });
+            Product.update(
+              { subcategory_id: null },
+                    {
+                        fields: ['subcategory_id'],
+                where: { id: req.body.id}
+            })
+                .then(num => {
+                    if (num == 1) {
+                        res.send({
+                            message: "Product was deleted successfully."
+                        });
+                    } else {
+                        res.send({
+                            message: `Cannot delete the Product with id=${id}. Maybe Product was not found!`
+                        });
+                    }
+                })
+                .catch(err => {
+                    res.status(500).send({
+                        message: `Error deleting Product with id=${id}`
+                    });
+                });
+        
+        }
+
+        exports.addProduct = function (req, res) {
+            Product.findByPk(req.params.id)
+                .then(data => {
+                    res.send({
+                        'Data': data,
+                        'Status': 200
+                    });
+                })
+                .catch(err => {
+                    res.status(500).send({
+                        message:
+                            err.message || "Some error occurred while retrieving the Product " + req.params.id + "."
+                    });
+                });
+                Product.update(
+                  { subcategory_id: req.params.id },
+                        {
+                            fields: ['subcategory_id'],
+                    where: { id: req.body.id}
+                })
+                    .then(num => {
+                        if (num == 1) {
+                            res.send({
+                                message: "Product was updated successfully."
+                            });
+                        } else {
+                            res.send({
+                                message: `Cannot update the Product with id=${id}. Maybe Product was not found!`
+                            });
+                        }
+                    })
+                    .catch(err => {
+                        res.status(500).send({
+                            message: `Error updating Product with id=${id}`
+                        });
+                    });
+        
+        }
+        
 }
 
