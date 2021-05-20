@@ -6,14 +6,14 @@ router.get('/:id', Controller.getCategory);
 router.post('/', Controller.addCategory);
 router.delete('/', Controller.deleteAllCategories);
 router.delete('/:id', Controller.deleteCategoryById);
-router.put('/:id', Controller.updateCategory);
+router.put('/:id', Controller.updateCategories);
 //Add Sub Category
 //router.post('/:id', Controller.addSubCategory);
 //Delete Sub Category
 //router.delete('/:id/:sub_id', Controller.deleteSubCategory);
-router.post('/:id/sub_categories', Controller.addSubCategory);
+//router.post('/:id/sub_categories', Controller.addSubCategory);
 //Delete Sub Category
-router.delete('/:id/sub_categories/:sub_id', Controller.deleteSubCategory);
+//router.delete('/:id/sub_categories/:sub_id', Controller.deleteSubCategory);
 //Get All Sub Categories
-router.get('/:id/sub_categories', Controller.getAllSubCategories);
+//router.get('/:id/sub_categories', Controller.getAllSubCategories);
 module.exports = router;
